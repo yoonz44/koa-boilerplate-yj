@@ -1,0 +1,55 @@
+{
+  "name": "redate-server",
+  "version": "1.0.0",
+  "description": "redate node server",
+  "main": "index.js",
+  "author": "luvd",
+  "license": "MIT",
+  "scripts": {
+    "build": "npm run clear && babel src --ignore *.spec.js --out-dir dist --copy-files",
+    "clear": "rimraf ./dist",
+    "start": "npm run clear && babel src --ignore *.spec.js --out-dir dist --copy-files && node dist/index.js",
+    "start2": "node dist/index.js",
+    "debug": "babel-node --inspect src/index.js --presets env,stage-0",
+    "test": "jest --coverage --forceExit --runInBand",
+    "test:watch": "jest --watch --coverage",
+    "watch": "nodemon src/index.js --exec babel-node",
+    "precommit": "lint-staged",
+    "commitmsg": "commitlint -e",
+    "lint": "eslint .",
+    "release": "standard-version",
+    "sequelize": "./node_modules/.bin/sequelize",
+    "migrate": "./node_modules/.bin/sequelize db:migrate",
+    "seed": "./node_modules/.bin/sequelize db:seed:all"
+  },
+  "dependencies": {
+    "axios": "^0.19.0",
+    "babel-polyfill": "^6.26.0",
+    "boom": "^7.3.0",
+    "dotenv-safe": "^8.1.0",
+    "jsonwebtoken": "^8.5.1",
+    "kcors": "^2.2.2",
+    "koa": "^2.8.2",
+    "koa-bodyparser": "^4.2.1",
+    "koa-jwt": "^3.6.0",
+    "koa-logger": "^3.2.1",
+    "koa-router": "^7.4.0",
+    "lodash": "^4.17.15",
+    "mariadb": "^2.1.1",
+    "sequelize": "^5.19.4"
+  },
+  "devDependencies": {
+    "babel-cli": "^6.26.0",
+    "babel-plugin-transform-object-rest-spread": "^6.26.0",
+    "babel-preset-env": "^1.7.0",
+    "babel-preset-stage-0": "^6.24.1",
+    "nodemon": "^1.19.3",
+    "rimraf": "^3.0.0"
+  },
+  "babel": {
+    "presets": [
+      "env"
+    ],
+    "plugins": ["transform-object-rest-spread"]
+  }
+}
